@@ -110,6 +110,10 @@ public class HidingNavigationBarManager: NSObject, UIScrollViewDelegate, UIGestu
 	}
 	
     public func addScrollView(scrollView:UIScrollView) {
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(HidingNavigationBarManager.handlePanGesture(_:)))
+        panGesture.delegate = self
+        scrollView.addGestureRecognizer(panGesture)
+        
         scrollViews.append(scrollView)
         updateContentInsets(scrollView)
     }
